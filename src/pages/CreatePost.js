@@ -4,7 +4,8 @@ import {Navigate} from "react-router-dom";
 import Editor from "../Editor";
 import '../styles/login.css'
 import '../styles/createpost.css';
-import { Store } from 'react-notifications-component';
+import Form from 'react-bootstrap/Form';
+import { showNotification } from '../NotificationMan.js';
 
 export default function CreatePost() {
   const [title,setTitle] = useState('');
@@ -38,20 +39,8 @@ export default function CreatePost() {
 
     if(!(title && summary && content && files[0])){
       //notification
-      Store.addNotification({
-        title: "Failed",
-        message: "Your must complete all information about post",
-        type: "info",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          pauseOnHover: true,
-          onScreen: true
-        }
-      });
+      showNotification("info","Failed","Your must complete all information about post");
+     
       ev.preventDefault();
     }
     else{
@@ -69,38 +58,12 @@ export default function CreatePost() {
       });
       if (response.ok) {
         //notification
-        Store.addNotification({
-          title: "Success",
-          message: "The post was added",
-          type: "success",
-          insert: "top",
-          container: "top-right",
-          animationIn: ["animate__animated", "animate__fadeIn"],
-          animationOut: ["animate__animated", "animate__fadeOut"],
-          dismiss: {
-            duration: 5000,
-            pauseOnHover: true,
-            onScreen: true
-          }
-        });
+        showNotification("success","Success","The post was added");
         setRedirect(true);
       }
       else{
          //notification
-         Store.addNotification({
-          title: "Failed",
-          message: "Your post does not submited",
-          type: "danger",
-          insert: "top",
-          container: "top-right",
-          animationIn: ["animate__animated", "animate__fadeIn"],
-          animationOut: ["animate__animated", "animate__fadeOut"],
-          dismiss: {
-            duration: 5000,
-            pauseOnHover: true,
-            onScreen: true
-          }
-        });
+         showNotification("danger","Failed","Your post does not modified");
       }
     }
     
@@ -112,25 +75,31 @@ export default function CreatePost() {
   return (
    
     <form onSubmit={createNewPost} className="index-posts">
-      <input type="title"
-             placeholder={'Title'}
-             value={title}
-             onChange={ev => setTitle(ev.target.value)} />
-      <input type="summary"
-             placeholder={'Summary'}
-             value={summary}
-             onChange={ev => setSummary(ev.target.value)} />
-      <input type="file"
-             onChange={ev => setFiles(ev.target.files)} />
-      
+
+       <Form.Group className="mb-3" >
+        <Form.Label>Title</Form.Label>
+        <Form.Control type="text" placeholder="Post title" 
+            value={title}
+            onChange={ev => setTitle(ev.target.value)}/>
+      </Form.Group>
+      <Form.Group className="mb-3" >
+        <Form.Label>Summary</Form.Label>
+        <Form.Control type="text" placeholder="Post summary" 
+            value={summary}
+            onChange={ev => setSummary(ev.target.value)}/>
+      </Form.Group>
+      <Form.Group controlId="formFile" className="mb-3">
+        <Form.Label>Image</Form.Label>
+        <Form.Control type="file" onChange={ev => setFiles(ev.target.files)} />
+      </Form.Group>
       <div>
         <div className='add-tags-div'>
-        <input
-          type="text"
-          placeholder="Add tags"
-          value={tagInput}
-          onChange={handleTagInputChange}
-        />
+        <Form.Group className="mb-3" >
+          <Form.Label>Tag</Form.Label>
+          <Form.Control type="text" placeholder="Tag" 
+               value={tagInput}
+               onChange={handleTagInputChange}/>    
+        </Form.Group>
         <button type="button" className='add-btn' onClick={handleAddTag}>+</button>
         </div>
         <div className='tags-container'>

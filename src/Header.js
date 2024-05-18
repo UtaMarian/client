@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from 'react-router-dom'
 import './App.css'
-import {useContext, useEffect,useState} from "react";
+import {useContext, useEffect} from "react";
 import {UserContext} from "./UserContext";
 import {  Switch } from "@mui/material"
 
@@ -18,7 +18,7 @@ function Header({ toggleDarkMode, toggleDarkTheme }) {
         setUserInfo(userInfo);
       });
     });
-  }, []);
+  }, [setUserInfo]);
 
   function logout() {
     fetch('http://localhost:4000/logout', {

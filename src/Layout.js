@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import {useState} from "react";
 
 
+
 function Layout() {
 
   const [toggleDarkMode, setToggleDarkMode] = useState(false);
@@ -31,6 +32,7 @@ function Layout() {
   
     <main>
         <Header toggleDarkMode={toggleDarkMode} toggleDarkTheme={toggleDarkTheme}/>
+
         <Outlet/>
     </main>
     </ThemeProvider>

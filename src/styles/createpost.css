@@ -1,11 +1,13 @@
 button.add-btn{
     background-color: #00b315;
-    width: 27px;
-    height: 27px;
-    font-size: 27px;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
     padding: 0;
+    border-radius: 5px;
+  
     
 }
 button.add-btn:hover{
@@ -22,20 +24,24 @@ div.add-tags-div input{
     margin-right: 0;
 }
 div.add-tags-div button{
-    margin-left: 30px;
+    margin-left: 10px;
+    margin-top: 33px;
+    
    
 }
 button.remove-btn{
     
     background-color: rgb(214, 103, 103);
-    width: 24px;
-    height: 24px;
-    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    
     font-weight: bold;
     text-align: center;
     padding: 0;
  
     margin-right: 0px;
+    margin-left: 10px;
+    border-radius: 5px;
     
 }
 button.remove-btn:hover{
@@ -68,6 +74,7 @@ button.remove-btn:hover{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  
 }
 
 .button-10:focus {
@@ -88,6 +95,9 @@ div.margintop-tags{
 
 button.delete-button{
     background-color: rgb(175, 2, 2);
+
+    margin: auto;
+
 }
 div.form-buttons{
     display: flex;
@@ -95,5 +105,6 @@ div.form-buttons{
 }
 button{
     width: 150px;
+    
 
 }

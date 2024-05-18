@@ -192,3 +192,27 @@ header.app-navbar-white{
 
   margin-top: 15px;
 }
+
+.social-add{
+  display: flex;
+  position: relative;
+  top:10%;
+  left: 2%;
+}
+div.carousel-container{
+  width: 1000px;
+  margin: auto;
+}
+form.search-form{
+width: 500px;
+  margin: auto;
+  display: flex;
+justify-content: space-around;
+}
+form.search-form button{
+  height: 80%;
+  margin-left: 20px;
+}
+form.search-form input{
+  width: 400px;
+}

@@ -3,6 +3,7 @@ import {Navigate, useParams} from "react-router-dom";
 import Editor from "../Editor";
 import '../styles/createpost.css'
 import { showNotification } from '../NotificationMan.js';
+import Form from 'react-bootstrap/Form';
 
 export default function EditPost() {
   const {id} = useParams();
@@ -43,7 +44,7 @@ export default function EditPost() {
           setTags(postInfo.tags);
         });
       });
-  }, []);
+  }, [id]);
 
   async function updatePost(ev) {
     ev.preventDefault();
@@ -59,8 +60,6 @@ export default function EditPost() {
     if(!(title && summary && content)){
       //notification
       showNotification("info","Failed","Your must complete all information about post");
-      
-      
     }
     const response = await fetch('http://localhost:4000/post', {
       method: 'PUT',
@@ -69,12 +68,10 @@ export default function EditPost() {
     });
     if (response.ok) {
       showNotification("success","Success","The post was added");
-      
       setRedirect(true);
     }
     else{
       showNotification("danger","Failed","Your post does not modified");
-
     }
   }
 
@@ -91,8 +88,6 @@ export default function EditPost() {
       showNotification("success","Deleted","Post was deleted");
       settoHome(true);
       setRedirect(true);
-
-      
     }else{
       showNotification("danger","Failed","Post was not deleted");
     }
@@ -108,25 +103,33 @@ export default function EditPost() {
 
   return (<>
     <form onSubmit={updatePost} className="index-posts">
-      <input type="title"
-             placeholder={'Title'}
-             value={title}
-             onChange={ev => setTitle(ev.target.value)} />
-      <input type="summary"
-             placeholder={'Summary'}
-             value={summary}
-             onChange={ev => setSummary(ev.target.value)} />
-      <input type="file"
-             onChange={ev => setFiles(ev.target.files)} />
+    <Form.Group className="mb-3" >
+        <Form.Label>Title</Form.Label>
+        <Form.Control type="text" placeholder="Post title" 
+            value={title}
+            onChange={ev => setTitle(ev.target.value)}/>
+      </Form.Group>
+      <Form.Group className="mb-3" >
+        <Form.Label>Summary</Form.Label>
+        <Form.Control type="text" placeholder="Post summary" 
+            value={summary}
+            onChange={ev => setSummary(ev.target.value)}/>
+      </Form.Group>
+      <Form.Group controlId="formFile" className="mb-3">
+        <Form.Label>Image</Form.Label>
+        <Form.Control type="file" onChange={ev => setFiles(ev.target.files)} />
+      </Form.Group>
 
-<div>
+      
+
+    <div>
         <div className='add-tags-div'>
-        <input
-          type="text"
-          placeholder="Add tags"
-          value={tagInput}
-          onChange={handleTagInputChange}
-        />
+        <Form.Group className="mb-3" >
+          <Form.Label>Tag</Form.Label>
+          <Form.Control type="text" placeholder="Tag" 
+               value={tagInput}
+               onChange={handleTagInputChange}/>    
+        </Form.Group>
         <button type="button" className='add-btn' onClick={handleAddTag}>+</button>
         </div>
         <div className='tags-container'>

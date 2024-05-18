@@ -10,8 +10,8 @@ import CreatePost from './pages/CreatePost';
 import PostPage from "./pages/PostPage";
 import EditPost from "./pages/EditPost";
 import { ReactNotifications } from 'react-notifications-component'
-
 import 'react-notifications-component/dist/theme.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
