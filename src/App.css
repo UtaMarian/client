@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *{
   box-sizing: border-box;
 }
@@ -22,14 +26,15 @@ div .index-posts{
 header{
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
+
 
   align-items: center;
   position: fixed;
   z-index: 99;
   width: 100%;
   flex-wrap: wrap;
-  background: #242526;
+  /* background: #242526; */
+  background: #ffc107;
   position:fixed;
   overflow: hidden;
   top:0;
@@ -41,6 +46,8 @@ header{
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
   text-decoration: none;
+  margin: 0 !important;
+  
 }
 
 header a{
@@ -179,13 +186,14 @@ div.post-text a{
 }
 
 header.app-navbar-dark{
-  background-color: #3d3d3d;
+   background-color: #3d3d3d; 
+
   color:whitesmoke
 }
 
 header.app-navbar-white{
   color:#3d3d3d;
-  background-color:#ffc900;
+  background-color:#ffc107;
 }
 
 .switch-button{
@@ -215,4 +223,38 @@ form.search-form button{
 }
 form.search-form input{
   width: 400px;
+}
+
+.admin-grid{
+  display: grid;
+  grid-template-columns: 1fr 7fr; 
+  gap:10px;
+  background-color:  #f0f2f5;
+  margin-top: -40px;
+
+}
+
+.box-shadow{
+  
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+}
+header.app-navbar-dark{
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.4);
+}
+.search-input-homepage{
+  background-color:white;
+}
+.footer{
+  background-color: #3d3d3d; 
+  height: 200px;
+  width: 100%;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 30px;
+}
+.footer-contact-social{
+  gap: 300px;
+  justify-content: center;
 }

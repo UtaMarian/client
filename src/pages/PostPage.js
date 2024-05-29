@@ -4,13 +4,14 @@ import {formatISO9075} from "date-fns";
 import {UserContext} from "../UserContext";
 import {Link} from 'react-router-dom';
 import '../styles/createpost.css'
+import MarkdownEditor from '@uiw/react-markdown-editor';
 
 export default function PostPage() {
   const [postInfo,setPostInfo] = useState(null);
   const {userInfo} = useContext(UserContext);
   const {id} = useParams();
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`)
+    fetch(process.env.REACT_APP_API+`/post/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
@@ -36,7 +37,7 @@ export default function PostPage() {
         </div>
       )}
       <div className="image">
-        <img src={`http://localhost:4000/${postInfo.cover}`} alt=""/>
+        <img src={process.env.REACT_APP_API+`/${postInfo.cover}`} alt=""/>
       </div>
       <div className='tags-container margintop-tags'>
           {postInfo.tags.map((tag, index) => (
@@ -45,7 +46,8 @@ export default function PostPage() {
             </div>
           ))}
         </div>
-      <div className="content" dangerouslySetInnerHTML={{__html:postInfo.content}} />
+      {/* <div className="content" dangerouslySetInnerHTML={{__html:postInfo.content}} /> */}
+      <MarkdownEditor.Markdown source={postInfo.content} height="200px" /> 
     </div>
   );
 }

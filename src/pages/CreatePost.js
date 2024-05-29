@@ -1,11 +1,11 @@
 import 'react-quill/dist/quill.snow.css';
 import {useState} from "react";
 import {Navigate} from "react-router-dom";
-import Editor from "../Editor";
-import '../styles/login.css'
+import '../styles/login.css';
 import '../styles/createpost.css';
 import Form from 'react-bootstrap/Form';
 import { showNotification } from '../NotificationMan.js';
+import MarkdownEditor from '@uiw/react-markdown-editor';
 
 export default function CreatePost() {
   const [title,setTitle] = useState('');
@@ -51,7 +51,7 @@ export default function CreatePost() {
       data.set('tags',tags);
       data.set('file', files[0]);
       ev.preventDefault();
-      const response = await fetch('http://localhost:4000/post', {
+      const response = await fetch(process.env.REACT_APP_API+'/post', {
         method: 'POST',
         body: data,
         credentials: 'include',
@@ -114,7 +114,13 @@ export default function CreatePost() {
         </div>
       </div>
 
-      <Editor value={content} onChange={setContent} />
+      {/* <Editor value={content} onChange={setContent} /> */}
+      <MarkdownEditor
+        value={content}
+        onChange={(value, viewUpdate) => {
+          setContent(value)
+        }}
+      />
       <button style={{marginTop:'5px'}}>Create post</button>
     </form>
     

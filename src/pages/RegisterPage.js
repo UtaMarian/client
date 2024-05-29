@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import '../styles/login.css'
 import { showNotification } from '../NotificationMan.js';
+import Form from 'react-bootstrap/Form';
 
 function RegisterPage() {
   const [username,setUsername]=useState('');
@@ -9,7 +10,7 @@ function RegisterPage() {
   async function register(ev) {
 
     ev.preventDefault();
-    const response = await fetch('http://localhost:4000/register', {
+    const response = await fetch(process.env.REACT_APP_API+'/register', {
       method: 'POST',
       body: JSON.stringify({username,password}),
       headers: {'Content-Type':'application/json'},
@@ -23,16 +24,20 @@ function RegisterPage() {
   return (
     <form onSubmit={register} className='register index-posts'>
       <h1>Register</h1>
-      <input placeholder='Username' 
-            type="text" 
-            value={username} 
-            onChange={ev=>setUsername(ev.target.value)}/>
-      <input placeholder='Password' 
-            type="password" 
-            value={password} 
-            onChange={ev=>setPassword(ev.target.value)}/>
-      {/* <input placeholder='Confirm password' type="password"/> */}
-      <button>Register</button>
+      <Form.Group className="mb-3" >
+        <Form.Label>Username</Form.Label>
+        <Form.Control type="text" placeholder="Username" 
+            value={username}
+            onChange={ev => setUsername(ev.target.value)}/>
+      </Form.Group>
+      <Form.Group className="mb-3" >
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" 
+            value={password}
+            onChange={ev => setPassword(ev.target.value)}/>
+      </Form.Group>
+      
+      <button  className="btn btn-secondary">Register</button>
     </form>
   )
 }

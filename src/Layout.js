@@ -4,6 +4,7 @@ import Header from './Header'
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import {useState} from "react";
+import Footer from './Footer';
 
 
 
@@ -29,11 +30,13 @@ function Layout() {
   return (
     <ThemeProvider theme={darkTheme}>
     <CssBaseline />
-  
+    
     <main>
         <Header toggleDarkMode={toggleDarkMode} toggleDarkTheme={toggleDarkTheme}/>
-
+  
         <Outlet/>
+
+        <Footer/>
     </main>
     </ThemeProvider>
   )

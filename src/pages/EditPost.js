@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 import {Navigate, useParams} from "react-router-dom";
-import Editor from "../Editor";
-import '../styles/createpost.css'
+import '../styles/createpost.css';
 import { showNotification } from '../NotificationMan.js';
 import Form from 'react-bootstrap/Form';
+import MarkdownEditor from '@uiw/react-markdown-editor';
 
 export default function EditPost() {
   const {id} = useParams();
@@ -35,7 +35,7 @@ export default function EditPost() {
 
   useEffect(() => {
    
-    fetch('http://localhost:4000/post/'+id)
+    fetch(process.env.REACT_APP_API+'/post/'+id)
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
@@ -61,7 +61,7 @@ export default function EditPost() {
       //notification
       showNotification("info","Failed","Your must complete all information about post");
     }
-    const response = await fetch('http://localhost:4000/post', {
+    const response = await fetch(process.env.REACT_APP_API+'/post', {
       method: 'PUT',
       body: data,
       credentials: 'include',
@@ -79,7 +79,7 @@ export default function EditPost() {
 
     const data = new FormData();
     data.set('id',id);
-    const delresponse = await fetch('http://localhost:4000/post/'+id, {
+    const delresponse = await fetch(process.env.REACT_APP_API+'/post/'+id, {
       method: 'DELETE',
       body: data,
       credentials: 'include',
@@ -144,7 +144,12 @@ export default function EditPost() {
         </div>
       </div>
       
-      <Editor onChange={setContent} value={content} />
+      <MarkdownEditor
+        value={content}
+        onChange={(value, viewUpdate) => {
+          setContent(value)
+        }}
+      />
       <div className="form-buttons">
         <button style={{marginTop:'5px'}}>Update</button>
         

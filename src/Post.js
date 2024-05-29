@@ -9,7 +9,7 @@ function Post({_id,title,summary,cover,content,createdAt,author}) {
     <div className="post">
     <div className="post-image">
         <Link to={`/post/${_id}`}>
-          <img src={'http://localhost:4000/'+cover} alt=""/>
+          <img src={process.env.REACT_APP_API+'/'+cover} alt=""/>
         </Link>
     </div>
     <div className="post-text">

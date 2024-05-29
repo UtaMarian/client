@@ -12,7 +12,7 @@ function IndexPage() {
    
     async function searchHandler(ev) {
 
-      const response = await fetch('http://localhost:4000/search?'+
+      const response = await fetch(process.env.REACT_APP_API+'/search?'+
       new URLSearchParams({
         word: word
     }), {
@@ -33,7 +33,7 @@ function IndexPage() {
     }
 
     useEffect(() => {
-      fetch('http://localhost:4000/post').then(response => {
+      fetch(process.env.REACT_APP_API+'/post').then(response => {
         response.json().then(posts => {
          
           setPosts(posts);

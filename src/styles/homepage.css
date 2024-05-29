@@ -1,0 +1,173 @@
+.homepage-container{
+    margin-top: -40px;
+  }
+.cover-image{
+    width: 100%;
+    background-image: url('../icons/earth.jpg');
+    background-size:cover;
+  
+    height: 300px;
+}
+
+.separator-container{
+  width: 100%;
+  height: 50px;
+  background-color: #ffc107;
+}
+.link-bar-nav{
+  width: 420px;
+  height: 40px;
+  background-color: whitesmoke;
+  border: 1px transparent #d3d3d3;
+  border-radius: 15px;
+  box-shadow: 
+  0 0  0 2px rgb(190, 190, 190),
+  0.3em 0.3em 1em rgba(0,0,0,0.3);
+  display: flex;
+  gap:50px;
+  padding: 6px;
+  text-align: center;
+  position: relative;
+  top:-60px;
+  left:38%;
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+.link-bar-nav a{
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1.625;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.0075em;
+  opacity: 1;
+  text-transform: capitalize;
+  vertical-align: unset;
+  color: rgb(36, 50, 73);
+  flex-wrap: wrap;
+}
+.project-card-home{
+  width: 400px;
+  height: 500px;
+  background-color: #ebedf4;
+  border: 1px solid rgb(209, 215, 253);
+  border-radius: 15px;
+  margin: 20px;
+  padding: 15px;
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1.625;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.0075em;
+  opacity: 1;
+  text-transform: capitalize;
+  vertical-align: unset;
+  color: rgb(45, 64, 94);
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+}
+
+.project-card-home:hover{
+  box-shadow: 
+  0 0  0 2px #ebedf4,
+  0.3em 0.3em 1em rgba(0,0,0,0.3);
+  background-color: white;
+  transition: ease-out 0.5s;
+  border:none;
+}
+.project-card-home h1:hover{
+  text-decoration:overline underline;
+
+}
+.project-card-home h4{
+  font-size: 16px;
+}
+.project-card-home .website-tag{
+  display: flex;
+  flex-wrap: wrap;
+  gap:15px;
+  justify-content: center;
+  color: #ffc107;
+}
+.project-card-home .website-tag:hover{
+  text-decoration: dotted;
+
+
+}
+.project-card-home .website-tag p:hover{
+  background-color: #ffc107;
+  border-radius: 15px;
+  box-shadow: 
+  0 0  0 2px #ebedf4,
+  0.3em 0.3em 1em rgba(0,0,0,0.3);
+  padding-left: 5px;
+  padding-right: 5px;
+  color: whitesmoke;
+  transition:ease-in-out 0.4s;
+}
+
+.project-img-cover{
+  border-radius: 15px;
+  margin-top: 40px;
+}
+.project-card-home:hover .project-img-cover {
+  transform: translateY(-20px);
+  transition: ease-out 0.5s;
+}
+
+.homepage-projects-display{
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.random-logo-img{
+  position: absolute;
+
+  height: auto;
+  top: calc(50% - 50px); /* Adjust to keep the image within the viewport */
+  left: calc(50% - 50px); /* Adjust to keep the image within the viewport */
+  transform: rotate(0deg); /* Initial rotation */
+  transition: transform 0.5s ease; /* Smooth transition for rotation */
+}
+
+/* Adjust positions and rotations as needed */
+.img1 {
+  top: 400px;
+  left: 300px;
+  transform: rotate(60deg);
+}
+
+.img2 {
+  top: 800px;
+  left: 1700px;
+  transform: rotate(-30deg);
+}
+
+.img3 {
+  top: 360px;
+  left: 800px;
+  transform: rotate(13deg);
+}
+.img4 {
+  top: 490px;
+  left: 1740px;
+  transform: rotate(9deg);
+}
+.img5 {
+  top: 800px;
+  left: 100px;
+  transform: rotate(-10deg);
+}
+.img6 {
+  top: 690px;
+  left: 500px;
+  transform: rotate(9deg);
+}
+.img7 {
+  top: 560px;
+  left: 960px;
+}
