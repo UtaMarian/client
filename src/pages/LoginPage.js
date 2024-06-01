@@ -13,6 +13,7 @@ function LoginPage() {
 
   async function login(ev) {
     ev.preventDefault();
+    console.log(process.env.REACT_APP_SERVER);
     const response = await fetch(process.env.REACT_APP_API+'/login', {
       method: 'POST',
       body: JSON.stringify({username, password}),

@@ -13,6 +13,7 @@ import LogoBootstrap from './icons/icons8-bootstrap-96.png';
 
 function Homepage() {
     const [search,setSearch]= useState();
+    
   return (
     <div className='bg-[whitesmoke] homepage-container'>
             <div className='cover-image'> </div>

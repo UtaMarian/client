@@ -12,6 +12,11 @@ function Header({ toggleDarkMode, toggleDarkTheme }) {
 
 
   useEffect(() => {
+    fetch(process.env.REACT_APP_API).then(response => {
+      response.json().then(res => {
+        console.log(res);
+      });
+    });
     fetch(process.env.REACT_APP_API+'/profile', {
       credentials: 'include',
     }).then(response => {
