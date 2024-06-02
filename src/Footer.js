@@ -17,7 +17,7 @@ function Footer() {
                 </div>
                 <div className='flex gap-3'>
                     <FaPhone /> 
-                    +407946785
+                    +4079xxxxxxx
                 </div>
             </div>
             <div className='footer-social'>

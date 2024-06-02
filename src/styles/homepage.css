@@ -115,7 +115,7 @@
 }
 .project-card-home:hover .project-img-cover {
   transform: translateY(-20px);
-  transition: ease-out 0.5s;
+  transition: ease-in-out 0.5s;
 }
 
 .homepage-projects-display{
@@ -131,7 +131,7 @@
   top: calc(50% - 50px); /* Adjust to keep the image within the viewport */
   left: calc(50% - 50px); /* Adjust to keep the image within the viewport */
   transform: rotate(0deg); /* Initial rotation */
-  transition: transform 0.5s ease; /* Smooth transition for rotation */
+  transition: transform 0.5s ease-in-out; /* Smooth transition for rotation */
 }
 
 /* Adjust positions and rotations as needed */
@@ -170,4 +170,18 @@
 .img7 {
   top: 560px;
   left: 960px;
+}
+/* CSS */
+.fade-in {
+  opacity: 0; /* Setăm opacitatea inițială la 0 */
+  animation: fadeInAnimation 1s ease forwards; /* Definim animația */
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0; /* Opacitatea la începutul animației */
+  }
+  to {
+    opacity: 1; /* Opacitatea la sfârșitul animației */
+  }
 }

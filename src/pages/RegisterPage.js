@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/login.css'
-import { showNotification } from '../NotificationMan.js';
+import { showNotification } from '../utils/NotificationMan.js';
 import Form from 'react-bootstrap/Form';
 
 function RegisterPage() {

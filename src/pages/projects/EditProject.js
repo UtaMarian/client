@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { showNotification } from '../../NotificationMan';
+import { showNotification } from '../../utils/NotificationMan';
 import Form from 'react-bootstrap/Form';
 import MarkdownEditor from '@uiw/react-markdown-editor';
-
+import { Navigate } from 'react-router-dom';
 
 const ProjectState = {
   title: '',
@@ -23,20 +23,20 @@ function EditProject() {
   const [project,setProject]= useState(ProjectState);
   const [tagInput, setTagInput] = useState('');
   const [redirect,setRedirect] = useState(false);
-  const [toHome,settoHome] = useState(false);
 
   const handleTagInputChange = (event) => {
     setTagInput(event.target.value);
   };
 
   const handleAddTag = () => {
-    const newTag = project.tagInput.trim();
+    const newTag = tagInput.trim();
     if (newTag && !project.tags.includes(newTag)) {
       setProject({
         ...project,
         tags: [...project.tags, newTag],
         tagInput: '' 
       });
+      setTagInput('');
     }
   };
   
@@ -47,8 +47,50 @@ function EditProject() {
     });
   };
   
+  async function createNewProject(ev) {
+
+    if(!(project.title && project.description && 
+      project.images && project.content && project.category)){
+      //notification
+      showNotification("info","Failed","Your must complete all information about post");
+      ev.preventDefault();
+    }
+    else{
+      const data = new FormData();
+      data.set('title', project.title );
+      data.set('description', project.description);
+      data.set('content', project.content);
+      data.set('category',project.category);
+      data.set('file', project.images[0]);
+      data.set('startDate', project.startDate);
+      data.set('endDate', project.endDate);
+      data.set('status', project.status);
+      data.set('tags', project.tags);
+      data.set('linkWebsite', project.linkWebsite);
+      data.set('linkGitHub', project.linkGitHub);
+      ev.preventDefault();
+      const response = await fetch(process.env.REACT_APP_API+'/project/create', {
+        method: 'POST',
+        body: data,
+        credentials: 'include',
+      });
+      if (response.ok) {
+        //notification
+        showNotification("success","Success","The post was added");
+        setRedirect(true);
+      }
+      else{
+         //notification
+         showNotification("danger","Failed","Your post was not created");
+      }
+    }
+    
+  }
+  if (redirect) {
+    return <Navigate to={'/'} />
+  }
   return (
-    <form  className="index-posts">
+    <form onSubmit={createNewProject}  className="index-posts">
       <Form.Group className="mb-3" >
         <Form.Label>Title</Form.Label>
         <Form.Control type="text" placeholder="Post title" 
@@ -63,7 +105,7 @@ function EditProject() {
     </Form.Group>
     <Form.Group  className="mb-3">
       <Form.Label>Image</Form.Label>
-      <Form.Control type="file" onChange={ev => setProject({...project,images:ev.target.value})}/>
+      <Form.Control type="file" onChange={ev => setProject({...project,images:ev.target.files})}/>
     </Form.Group>
     <Form.Group  className="mb-3">
       <Form.Label>Start Date</Form.Label>

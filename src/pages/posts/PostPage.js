@@ -1,10 +1,11 @@
 import {useContext, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {formatISO9075} from "date-fns";
-import {UserContext} from "../UserContext";
+import {UserContext} from "../../UserContext";
 import {Link} from 'react-router-dom';
-import '../styles/createpost.css'
+import '../../styles/createpost.css'
 import MarkdownEditor from '@uiw/react-markdown-editor';
+import { showNotification } from "../../utils/NotificationMan";
 
 export default function PostPage() {
   const [postInfo,setPostInfo] = useState(null);
@@ -16,7 +17,9 @@ export default function PostPage() {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
         });
-      });
+      }).catch(e=>{
+        showNotification("danger","Verify network connection","The post was not loaded")
+    });;
   }, [id]);
 
   if (!postInfo) return '';

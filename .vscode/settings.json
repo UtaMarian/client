@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/3ddbe454-cecd-4f14-992a-7bf29f1ddbf6/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/flashumi",
+    "appService.deploySubpath": "."
+}

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Navigate, useParams} from "react-router-dom";
-import '../styles/createpost.css';
-import { showNotification } from '../NotificationMan.js';
+import '../../styles/createpost.css';
+import { showNotification } from '../../utils/NotificationMan';
 import Form from 'react-bootstrap/Form';
 import MarkdownEditor from '@uiw/react-markdown-editor';
 
@@ -43,7 +43,11 @@ export default function EditPost() {
           setSummary(postInfo.summary);
           setTags(postInfo.tags);
         });
-      });
+      })
+      .catch(e=>{
+        showNotification("danger","Verify network connection","The post was not loaded")
+    });
+
   }, [id]);
 
   async function updatePost(ev) {
@@ -84,7 +88,7 @@ export default function EditPost() {
       body: data,
       credentials: 'include',
     });
-    if(delresponse){
+    if(delresponse.ok){
       showNotification("success","Deleted","Post was deleted");
       settoHome(true);
       setRedirect(true);

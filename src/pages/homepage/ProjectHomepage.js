@@ -1,20 +1,17 @@
 import React from 'react'
 import '../../styles/homepage.css';
 
-function ProjectHomepage() {
+function ProjectHomepage({_id,title,tags,images,description}) {
   return (
     <div className='project-card-home'>
-        <h1>FLASH.UMI</h1>
-        <h4>Portfolio website</h4>
+        <h1>{title}</h1>
+        <h4>{description}</h4>
         <div className='website-tag'>
-            <p>React</p>
-            <p>NodeJs</p>
-            <p>ExpressJs</p>
-            <p>MongoDB</p>
-            <p>Bootstrap</p>
-            <p>Tailwind</p>
+        {tags.length > 0 && tags.map(tag => (
+            <p>{tag}</p>
+        ))}
         </div>
-        <img className='project-img-cover' src="https://independentoxford.com/wp-content/uploads/2020/06/website.jpg" alt="project-cover"/>
+        <img className='project-img-cover' src={process.env.REACT_APP_API+`/`+images} alt="project-cover"/>
     </div>
   )
 }

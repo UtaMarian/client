@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
-import { showNotification } from '../../NotificationMan.js';
+import { showNotification } from '../../utils/NotificationMan.js';
 import Form from 'react-bootstrap/Form';
+
 
 function AdminPanel() {
 
@@ -84,6 +85,7 @@ async function updateUser(id, field, value) {
   }
 
   return (
+
     <div className='box-shadow'>
 
     <Table responsive  hover striped>
@@ -121,6 +123,7 @@ async function updateUser(id, field, value) {
   </Table>
   </div>
   )
+
 }
 
 export default AdminPanel

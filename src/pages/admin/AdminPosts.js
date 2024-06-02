@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { showNotification } from '../../NotificationMan';
+import { showNotification } from '../../utils/NotificationMan';
 import Table from 'react-bootstrap/Table';
 import {formatISO9075} from "date-fns";
 import { Navigate } from 'react-router-dom';

@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import Post from '../Post'
-import AppCarousel from "./AppCarousel";
+import Post from '../../Post'
+import AppCarousel from "../AppCarousel";
 import Form from 'react-bootstrap/Form';
-import { showNotification } from "../NotificationMan";
+import { showNotification } from "../../utils/NotificationMan";
 
 function IndexPage() {
 
@@ -38,7 +38,9 @@ function IndexPage() {
          
           setPosts(posts);
         });
-      });
+      }).catch(e=>{
+        showNotification("danger","Verify network connection","The posts was not loaded")
+    });;
     }, []);
 
   return (<>

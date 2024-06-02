@@ -4,6 +4,7 @@ import './App.css'
 import {useContext, useEffect} from "react";
 import {UserContext} from "./UserContext";
 import {  Switch } from "@mui/material"
+import { showNotification } from './utils/NotificationMan';
 
 
 function Header({ toggleDarkMode, toggleDarkTheme }) {
@@ -12,18 +13,16 @@ function Header({ toggleDarkMode, toggleDarkTheme }) {
 
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API).then(response => {
-      response.json().then(res => {
-        console.log(res);
-      });
-    });
+   
     fetch(process.env.REACT_APP_API+'/profile', {
       credentials: 'include',
     }).then(response => {
       response.json().then(userInfo => {
         setUserInfo(userInfo);
       });
-    });
+    }).catch(e=>{
+      showNotification("danger","Verify network connection","The profile was not loaded")
+  });;
   }, [setUserInfo]);
 
   function logout() {
@@ -48,14 +47,12 @@ function Header({ toggleDarkMode, toggleDarkTheme }) {
           <>
             <Link to="/admin">Admin</Link>
             <Link to="/addproject">Add project</Link>
+            <Link to="/create">Add post</Link>
           </>
 
         )}
-         <Link to="/posts" >Posts</Link>
         {username && (
         <>
-          <Link to="/create">Add post</Link>
-         
           <a onClick={logout}>Logout ({username})</a>
         </>
         )}
@@ -65,6 +62,7 @@ function Header({ toggleDarkMode, toggleDarkTheme }) {
             <Link to="/register">Register</Link>
           </>
         )}
+         <Link to="/posts" >Posts</Link>
         </nav>
       </header>
     

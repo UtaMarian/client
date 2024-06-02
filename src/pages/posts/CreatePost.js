@@ -1,10 +1,10 @@
 import 'react-quill/dist/quill.snow.css';
 import {useState} from "react";
 import {Navigate} from "react-router-dom";
-import '../styles/login.css';
-import '../styles/createpost.css';
 import Form from 'react-bootstrap/Form';
-import { showNotification } from '../NotificationMan.js';
+import '../../styles/login.css';
+import '../../styles/createpost.css';
+import { showNotification } from '../../utils/NotificationMan.js';
 import MarkdownEditor from '@uiw/react-markdown-editor';
 
 export default function CreatePost() {
@@ -40,7 +40,6 @@ export default function CreatePost() {
     if(!(title && summary && content && files[0])){
       //notification
       showNotification("info","Failed","Your must complete all information about post");
-     
       ev.preventDefault();
     }
     else{
@@ -63,7 +62,7 @@ export default function CreatePost() {
       }
       else{
          //notification
-         showNotification("danger","Failed","Your post does not modified");
+         showNotification("danger","Failed","Your post was not created");
       }
     }
     
